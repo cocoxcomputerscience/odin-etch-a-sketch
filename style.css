@@ -25,6 +25,19 @@ main {
 }
 
 /* customize section*/
+button {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    padding: 10px;
+}
+
+.clicked {
+    color: white;
+    background-color: black;
+}
+
 #customize-section {
     display: flex;
     flex-direction: column;
@@ -47,8 +60,13 @@ main {
 }
 
 .grid-item {
+    box-sizing: border-box;
     width: 30px;
     height: 30px;
+}
+
+.grid-lines {
+    border: 1px solid gray;
 }
 
 /* footer */
