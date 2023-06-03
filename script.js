@@ -1,40 +1,38 @@
 function populateGrid(size = 16) {
     // will delete all children nodes if grid size is updated
     if (gridContainer.hasChildNodes()) gridContainer.innerHTML = "";
+
+    // update grid-container grid template rows and columns
+    gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+    gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     
     let area = size * size;
     for (let i = 0; i < area; i++) {
         let gridItem = document.createElement("div");
-        gridItem.classList.add("grid-item");
-
-        // updating the width and height depending on the grid size
-        // !!! will need to update to a more efficient method
-        let side = (480 / size) + "px";
-        gridItem.style.width = side;
-        gridItem.style.height = side;
-
         gridContainer.appendChild(gridItem);
     }
 }
 
 function addColor(e) {
     // event delegation is used for the dynamically created grid
-    const target = e.target.closest(".grid-item");
+    const target = e.target.closest("#grid-container > div");
 
     if (target) {
-        if (e.type === "mouseover" && mouseDownFlag === false) return;
+        if (e.type === "mouseover" && !mouseDownFlag) return;
 
-        // checking eraser and rainbow flags
-        if (eraserFlag === true) {
-            target.style.backgroundColor = "white";
-            return;
-        } else if (rainbowFlag === true) {
-            target.style.backgroundColor = getRainbowColor();
-            return;
-        } else {
-            target.style.backgroundColor = gridColor; 
-        }
+        // checking flags
+        if (eraserFlag) target.style.backgroundColor = "white";
+        else if (rainbowFlag) target.style.backgroundColor = getRainbowColor();
+        else target.style.backgroundColor = gridColor; 
     }
+}
+
+function changeColor() {
+    // need to toggle buttons if it is clicked
+    if (eraserFlag) toggleEraser();
+    if (rainbowFlag) toggleRainbow();
+
+    gridColor = colorpicker.value;
 }
 
 function toggleRainbow() {
@@ -51,19 +49,24 @@ function getRainbowColor() {
 }
 
 function toggleGridLines(newGridSize = false) {
+    // if gridLinesButton is clicked, class is toggled
+    if (!newGridSize) gridLinesButton.classList.toggle("clicked-button");
+
+    // if gridLinesButton is not in clicked state and function was called by updating grid size, then return
+    if (newGridSize && !gridLinesButton.classList.contains("clicked-button")) return;
+
     let gridContainerItems = gridContainer.childNodes;
-
-    // if statement will run if function is called from updateGridSize
-    // checks to see if grid lines button is clicked. If clicked, then re-adds grid lines
-    if (newGridSize) {
-        if (gridLinesButton.classList.contains("clicked-button")) {
-            gridContainerItems.forEach(gridItem => gridItem.classList.toggle("grid-lines"));       
-        }
-        return;
+    let size = gridSizeInput.value;
+    let area = size * size;
+    let gridBottom = area - size;
+    let gridLastSquare = area - 1;
+    for (let i = 0; i < area; i++) {
+        // different gridItems have different border sides colored
+        if (i === gridLastSquare) continue;
+        else if ((i + 1) % size === 0) gridContainerItems[i].classList.toggle("grid-lines-bottom");
+        else if(i >= gridBottom && i < area) gridContainerItems[i].classList.toggle("grid-lines-right");
+        else gridContainerItems[i].classList.toggle("grid-lines-bottom-right");
     }
-
-    gridLinesButton.classList.toggle("clicked-button");
-    gridContainerItems.forEach(gridItem => gridItem.classList.toggle("grid-lines"));
 }
 
 function toggleEraser() {
@@ -75,23 +78,26 @@ function toggleEraser() {
 }
 
 function clearGrid() {
+    // need to toggle eraser button if it is clicked
+    if (eraserFlag) toggleEraser();
+    
     let gridContainerItems = gridContainer.childNodes;
     gridContainerItems.forEach(gridItem => gridItem.style.backgroundColor = "white");
 }
 
-function updateGridSize(e) {
+function updateGridSize(e) {  
     let gridSizeValue = e.target.value;
     
     // updating the displayed grid size underneath the range button
-    gridSize.textContent = `${gridSizeValue} x ${gridSizeValue}`;
+    gridSizeDisplay.textContent = `${gridSizeValue} x ${gridSizeValue}`;
 
     // updating the actual grid size 
     populateGrid(gridSizeValue);
     toggleGridLines(true);
 }
 
+let gridColor = "#000000";
 let mouseDownFlag = false;
-let gridColor = "black";
 let rainbowFlag = false;
 let eraserFlag = false;
 let gridContainer = document.querySelector("#grid-container");
@@ -100,19 +106,21 @@ let rainbowButton = document.body.querySelector("#rainbow-button");
 let gridLinesButton = document.body.querySelector("#grid-lines-button");
 let eraserButton = document.body.querySelector("#eraser-button");
 let clearButton = document.body.querySelector("#clear-button");
-let gridSizeToggle = document.querySelector("#grid-size-toggle");
-let gridSize = document.querySelector("#grid-size");
+let gridSizeInput = document.querySelector("#grid-size-input");
+let gridSizeDisplay = document.querySelector("#grid-size-display");
 
+// need to add preventDefault so that holding the mouse down will not drag the grid container or items inside
+gridContainer.addEventListener("mousedown", (e) => e.preventDefault());
 document.body.addEventListener("mousedown", () => {mouseDownFlag = true;});
 document.body.addEventListener("mouseup", () => {mouseDownFlag = false;});
 document.body.addEventListener("mousedown", addColor);
 document.body.addEventListener("mouseover", addColor);
-colorpicker.addEventListener("input", () => gridColor = colorpicker.value);
+colorpicker.addEventListener("input", changeColor);
 rainbowButton.addEventListener("click", toggleRainbow);
 // arrow function is used so that the default event argument is not passed
 gridLinesButton.addEventListener("click", () => {toggleGridLines();});
 eraserButton.addEventListener("click", toggleEraser);
 clearButton.addEventListener("click", clearGrid);
-gridSizeToggle.addEventListener("input", updateGridSize);
+gridSizeInput.addEventListener("input", updateGridSize);
 
 populateGrid();
