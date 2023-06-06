@@ -1,6 +1,6 @@
 function populateGrid(size = 16) {
-    // will delete all children nodes if grid size is updated
-    if (gridContainer.hasChildNodes()) gridContainer.innerHTML = "";
+    // will delete all child elements of gridContainer if grid size is updated
+    if (gridContainer.children.length) gridContainer.innerHTML = "";
 
     // update grid-container grid template rows and columns
     gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
@@ -55,7 +55,7 @@ function toggleGridLines(newGridSize = false) {
     // if gridLinesButton is not in clicked state and function was called by updating grid size, then return
     if (newGridSize && !gridLinesButton.classList.contains("clicked-button")) return;
 
-    let gridContainerItems = gridContainer.childNodes;
+    let gridContainerItems = gridContainer.children;
     let size = gridSizeInput.value;
     let area = size * size;
     let gridBottom = area - size;
@@ -81,7 +81,7 @@ function clearGrid() {
     // need to toggle eraser button if it is clicked
     if (eraserFlag) toggleEraser();
     
-    let gridContainerItems = gridContainer.childNodes;
+    let gridContainerItems = Array.from(gridContainer.children);
     gridContainerItems.forEach(gridItem => gridItem.style.backgroundColor = "white");
 }
 

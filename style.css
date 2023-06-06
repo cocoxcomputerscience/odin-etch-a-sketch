@@ -1,17 +1,29 @@
+/* COLOR SCHEME
+    #FCE9F1
+    #F1D4E5
+    #73BBC9
+    #080202
+*/
+
 * {
     margin: 0;
     padding: 0;
 }
 
 body {
+    font-family: "Monomaniac One";
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #73BBC9;
+    border: 16px dotted #080202;
+    margin: 8px;
 }
 
 main {
-    margin: 20px auto 20px auto;
+    margin: 20px 20px 50px 20px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 100px;
@@ -21,14 +33,15 @@ main {
 #header-title {
     text-align: center;
     margin-top: 20px;
-    font-size: 48px;
+    font-size: 60px;
+    text-shadow: 4px 4px #FCE9F1;
 }
 
 /* customize section*/
 #customize-section {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
     
 }
 
@@ -44,28 +57,93 @@ main {
     border-radius: 50%;;
 }
 
+#colorpicker::-moz-color-swatch {
+    border-radius: 50%;;
+}
+
+#colorpicker::-ms-color-swatch {
+    border-radius: 50%;;
+}
+
 #grid-size-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 5px;
+}
+
+#grid-size-display {
+    font-size: 24px;
+    font-weight: 550;
 }
 
 button {
-    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 50px;
+    font-family: "Monomaniac One";
+    font-size: 24px;
     font-weight: bold;
-    color: black;
-    background-color: white;
+    color: #080202;
+    border: 3px solid #080202;
+    background-color: #F1D4E5;
     padding: 10px;
 }
 
 .clicked-button {
-    color: white;
-    background-color: black;
+    color: #F1D4E5;
+    background-color: #080202;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    width: 140px;
+}
+
+/***** Track Styles *****/
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type="range"]::-webkit-slider-runnable-track {
+    background: #053a5f;
+    height: 6px;
+    border-radius: 4px;
+}
+  
+/******** Firefox ********/
+input[type="range"]::-moz-range-track {
+    background: #053a5f;
+    height: 6px;
+    border-radius: 4px;
+}
+
+/***** Thumb Styles *****/
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #080202;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    margin-top: -7px; /* centers thumb on track */
+}
+
+/******** Firefox ********/
+input[type="range"]::-moz-range-thumb {
+    border: none; /* removes extra border that firefox applies by default */
+    border-radius: 50%;
+    background-color: #080202;
+    height: 20px;
+    width: 20px;
 }
 
 /* grid */
 #grid-container {
-    border: 2px solid black;
+    background-color: #FFFFFF;
+    border: 4px solid #080202;
     width: 480px;
     height: 480px;
     display: grid;
@@ -92,9 +170,8 @@ button {
 
 /* footer */
 #footer {
-    display: flex;
-    flex-direction: column;
+    font-size: 20px;
     margin-top: auto;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
