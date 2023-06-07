@@ -111,8 +111,8 @@ let gridSizeDisplay = document.querySelector("#grid-size-display");
 
 // need to add preventDefault so that holding the mouse down will not drag the grid container or items inside
 gridContainer.addEventListener("mousedown", (e) => e.preventDefault());
-document.body.addEventListener("mousedown", () => {mouseDownFlag = true;});
-document.body.addEventListener("mouseup", () => {mouseDownFlag = false;});
+document.body.addEventListener("mousedown", () => mouseDownFlag = true);
+document.body.addEventListener("mouseup", () => mouseDownFlag = false);
 document.body.addEventListener("mousedown", addColor);
 document.body.addEventListener("mouseover", addColor);
 colorpicker.addEventListener("input", changeColor);
@@ -124,3 +124,5 @@ clearButton.addEventListener("click", clearGrid);
 gridSizeInput.addEventListener("input", updateGridSize);
 
 populateGrid();
+// will have grid lines on after grid is populated
+gridLinesButton.click();

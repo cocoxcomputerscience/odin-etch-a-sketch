@@ -2,6 +2,7 @@
     #FCE9F1
     #F1D4E5
     #73BBC9
+    #053A5F
     #080202
 */
 
@@ -107,14 +108,14 @@ input[type="range"] {
 /***** Track Styles *****/
 /***** Chrome, Safari, Opera, and Edge Chromium *****/
 input[type="range"]::-webkit-slider-runnable-track {
-    background: #053a5f;
+    background: #053A5F;
     height: 6px;
     border-radius: 4px;
 }
   
 /******** Firefox ********/
 input[type="range"]::-moz-range-track {
-    background: #053a5f;
+    background: #053A5F;
     height: 6px;
     border-radius: 4px;
 }
@@ -144,11 +145,12 @@ input[type="range"]::-moz-range-thumb {
 #grid-container {
     background-color: #FFFFFF;
     border: 4px solid #080202;
-    width: 480px;
-    height: 480px;
+    width: 600px;
+    height: 600px;
     display: grid;
     grid-template-rows: repeat(16, 1fr);
     grid-template-columns: repeat(16, 1fr);
+    box-shadow: 10px 10px 5px #053A5F;
 }
 
 #grid-container > div {
@@ -174,4 +176,38 @@ input[type="range"]::-moz-range-thumb {
     margin-top: auto;
     text-align: center;
     margin-bottom: 8px;
+}
+
+@media (min-width: 501px) and (max-width: 750px) {
+    main {
+        gap: 50px;
+    }
+    #grid-container {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        border: 8px dotted #080202;
+    }
+    main {
+        gap: 50px;
+    }
+    #header-title {
+        font-size: 40px;
+    }
+    button, #grid-size-display {
+        font-size: 20px;
+    }
+    #grid-container {
+        width: 250px;
+        height: 250px;
+    }
+    #footer {
+        font-size: 16px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
