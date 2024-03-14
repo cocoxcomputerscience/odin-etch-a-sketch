@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Etch-a-Sketch</title>
+        <link href="./styles.css" rel="stylesheet">
+        <script src="./script.js" defer></script>
+    </head>
+
+    <body>
+        <header>
+            <h1>ETCH-A-SKETCH</h1>
+        </header>
+        <main>
+            <section id="adjustments">
+                <div>
+                    <label for="colorpicker">Color Picker:</label>
+                    <input type="color" id="colorpicker" value="#FFFFFF">
+                </div>
+                <div id="grid-range-container">
+                    <label id="grid-range-label" for="grid-range"></label>
+                    <input type="range" min="2" max="100" value="16" class="slider" id="grid-range">
+                </div>
+                <button>RAINBOW</button>
+                <button>GRID LINES</button>
+                <button>ERASER</button>
+                <button>CLEAR</button>
+            </section>
+    
+            <section id="grid-container">
+            </section>
+        </main>
+        <footer>&copy; Copyright 2024 cocoxcomputerscience@gmail.com</footer>
+    </body>
+</html>
