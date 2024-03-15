@@ -2,7 +2,7 @@ function fillGrid() {
     let size = gridRange.value;
     gridRangeLabel.textContent = `${size} x ${size}`;
 
-    // remove divs before inserting new ones
+    // removes divs before inserting new ones
     gridContainer.innerHTML = "";
 
     gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`
@@ -27,35 +27,11 @@ function colorGrid(e) {
     }
 }
 
-
 function generateRandomColor() {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
     color = `rgb(${r}, ${g}, ${b})`;
-}
-
-function changeColor() {
-    if (rainbowBtn.classList.contains("clicked")) rainbowBtn.classList.toggle("clicked");
-    if (eraserBtn.classList.contains("clicked")) eraserBtn.classList.toggle("clicked");
-    color = colorpicker.value;
-}
-
-function toggleGridLines() {
-    gridLinesBtn.classList.toggle("clicked");  
-    gridContainer.childNodes.forEach(gridSquare => gridSquare.classList.toggle("grid-border"));
-}
-
-function toggleRainbow() {
-    rainbowBtn.classList.toggle("clicked");
-    if (!eraserBtn.classList.contains("clicked")) color = colorpicker.value;
-    if (eraserBtn.classList.contains("clicked")) eraserBtn.classList.toggle("clicked");
-}
-
-function toggleEraser() {
-    eraserBtn.classList.toggle("clicked");
-    eraserBtn.classList.contains("clicked") ? color = "white" : color = colorpicker.value;
-    if (rainbowBtn.classList.contains("clicked")) rainbowBtn.classList.toggle("clicked");
 }
 
 let gridContainer = document.querySelector("#grid-container");
@@ -69,13 +45,32 @@ let clearBtn = document.querySelector("#clear");
 let mouseDown = false;  
 let color = colorpicker.value;
 
-gridRange.addEventListener("input", fillGrid);
 document.addEventListener("DOMContentLoaded", fillGrid);
+gridRange.addEventListener("input", fillGrid);
+clearBtn.addEventListener("click", fillGrid);
 gridContainer.addEventListener("mouseover", colorGrid);
 gridContainer.addEventListener("mousedown", colorGrid);
 document.addEventListener("mouseup", () => mouseDown = false);
-rainbowBtn.addEventListener("click", toggleRainbow);
-colorpicker.addEventListener("input", changeColor);
-gridLinesBtn.addEventListener("click", toggleGridLines);
-eraserBtn.addEventListener("click", toggleEraser);
-clearBtn.addEventListener("click", fillGrid);
+
+colorpicker.addEventListener("input", () => {
+    if (rainbowBtn.classList.contains("clicked")) rainbowBtn.classList.toggle("clicked");
+    if (eraserBtn.classList.contains("clicked")) eraserBtn.classList.toggle("clicked");
+    color = colorpicker.value;
+});
+
+rainbowBtn.addEventListener("click", () => {
+    rainbowBtn.classList.toggle("clicked");
+    if (!eraserBtn.classList.contains("clicked")) color = colorpicker.value;
+    if (eraserBtn.classList.contains("clicked")) eraserBtn.classList.toggle("clicked");
+});
+
+gridLinesBtn.addEventListener("click", () => {
+    gridLinesBtn.classList.toggle("clicked");  
+    gridContainer.childNodes.forEach(gridSquare => gridSquare.classList.toggle("grid-border"));
+});
+
+eraserBtn.addEventListener("click", () => {
+    eraserBtn.classList.toggle("clicked");
+    eraserBtn.classList.contains("clicked") ? color = "white" : color = colorpicker.value;
+    if (rainbowBtn.classList.contains("clicked")) rainbowBtn.classList.toggle("clicked");
+});
