@@ -1,13 +1,30 @@
+/* color palette
+    #111f4d - dark blue
+    #e43a19 - orange
+    #7f0b3d - maroon
+    #ffa400 - goldish/yellow
+    #009ffd - blue
+*/
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Angkor", serif;
+}
+
+body {
+    background-color: #ffa400;
+    border: 20px double #e43a19;
 }
 
 /* header */
 h1 {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
+    font-size: 40px;
+    color: #111f4d;
+    text-shadow: 3px 0px #e43a19;
 }
 
 /* main */
@@ -16,44 +33,91 @@ main {
     align-items: flex-start;
     justify-content: center;
     gap: 40px;
-    padding: 20px;
+    padding: 10px;
 }
 
 /* adjustments */
 #adjustments {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
-
-#grid-range-container {
-    display: flex;
     align-items: center;
     gap: 10px;
+    background-color: #7f0b3d;
+    border-radius: 30px;
+    box-shadow: 10px 8px 5px #460622;
+    width: 300px;
+    padding: 20px;
 }
 
-#adjustments > button {
-    width: 100px;
+/* color container */
+#color-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+#colorpicker:hover {
+    opacity: 0.75;
+}
+
+input[type="color"] {
+	-webkit-appearance: none;
+    border: none;
+    border-radius: 50%;
+	width: 40px;
+	height: 40px;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+    border-radius: 50%;
+}
+
+/* grid range container */
+#grid-range-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#grid-range {
+    width: 120px;
+}
+
+/* buttons */
+button {
+    width: 120px;
     height: 50px;
+    font-size: 14px;
+    background-color: #111f4d;
+    color: #e43a19;
+    border: none;
+    border-radius: 10px;
+}
+
+button:hover {
+    font-size: 16px;
 }
 
 .clicked {
-    background-color: yellow;
+    background-color: #e43a19;
+    color: #111f4d;
 }
-
 
 /* grid container */
 #grid-container {
-    width: 510px;
-    height: 510px;
-    border: 5px solid black;
+    width: 500px;
+    height: 500px;
+    border: 10px solid #111f4d;
+    border-radius: 10px;
     display: grid;
+    background-color: #eed9c4;
 }
-
-/* #grid-container > div {
-    border-bottom: 1px solid black;
-    border-right: 1px solid black; 
-} */
 
 .grid-border {
     border-bottom: 1px solid black;
@@ -63,4 +127,5 @@ main {
 /* footer */
 footer {
     text-align: center;
+    padding-top: 10px;
 }

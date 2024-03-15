@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Etch-a-Sketch</title>
         <link href="./styles.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Angkor&display=swap" rel="stylesheet">
         <script src="./script.js" defer></script>
     </head>
 
@@ -13,13 +14,13 @@
         </header>
         <main>
             <section id="adjustments">
-                <div>
-                    <label for="colorpicker">Color Picker:</label>
+                <div id="color-container">
                     <input type="color" id="colorpicker" value="#000000">
+                    <label for="colorpicker">COLOR</label>
                 </div>
                 <div id="grid-range-container">
-                    <label id="grid-range-label" for="grid-range"></label>
                     <input type="range" min="2" max="100" value="16" class="slider" id="grid-range">
+                    <label id="grid-range-label" for="grid-range"></label>
                 </div>
                 <button id="rainbow">RAINBOW</button>
                 <button id="grid-lines" class="clicked">GRID LINES</button>

@@ -71,6 +71,6 @@ gridLinesBtn.addEventListener("click", () => {
 
 eraserBtn.addEventListener("click", () => {
     eraserBtn.classList.toggle("clicked");
-    eraserBtn.classList.contains("clicked") ? color = "white" : color = colorpicker.value;
+    eraserBtn.classList.contains("clicked") ? color = "#eed9c4" : color = colorpicker.value;
     if (rainbowBtn.classList.contains("clicked")) rainbowBtn.classList.toggle("clicked");
 });
