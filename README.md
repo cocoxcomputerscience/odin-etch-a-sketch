@@ -3,14 +3,17 @@ This project is created as an assignment from The Odin Project. The user can fil
 similarily to how an etch-a-sketch works.<Br>
 <Br>
 Customization and functionality includes:<Br>
-    - Changing the color drawn<Br>
-    - Changing the size of the grid<Br>
-    - Toggling a "rainbow" color on and off<Br>
-    - Toggling grid lines on and off<Br>
-    - Using an eraser<Br>
-    - Clearing the grid<Br>
+&emsp;- Changing the color drawn<Br>
+&emsp;- Changing the size of the grid<Br>
+&emsp;- Toggling a "rainbow" color on and off<Br>
+&emsp;- Toggling grid lines on and off<Br>
+&emsp;- Using an eraser<Br>
+&emsp;- Clearing the grid<Br>
 
 Skills I have learned and incorporated into this project include:<Br>
-    - Manipulating the DOM<Br>
-    - Adding events and event handlers to DOM objects<Br>
-    - CSS flex and grid<Br>
+&emsp;- Manipulating the DOM<Br>
+&emsp;- Adding events and event handlers to DOM objects<Br>
+&emsp;- CSS flex and grid<Br>
+<br>
+Preview:<br>
+<img width="904" alt="odin-etch-a-sketch2-prev" src="https://github.com/cocoxcomputerscience/odin-etch-a-sketch2/assets/120235563/1e5f46a4-56cc-42b1-8788-047eb7ec50ea">
