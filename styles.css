@@ -37,6 +37,10 @@ main {
     height: 50px;
 }
 
+.clicked {
+    background-color: yellow;
+}
+
 
 /* grid container */
 #grid-container {
@@ -46,7 +50,12 @@ main {
     display: grid;
 }
 
-#grid-container > div {
+/* #grid-container > div {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black; 
+} */
+
+.grid-border {
     border-bottom: 1px solid black;
     border-right: 1px solid black; 
 }
