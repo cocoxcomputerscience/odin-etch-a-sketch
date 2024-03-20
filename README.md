@@ -1,4 +1,4 @@
-# odin-etch-a-sketch2
+# odin-etch-a-sketch
 This project is created as an assignment from The Odin Project. The user can fill the grid<Br>
 similarily to how an etch-a-sketch works.<Br>
 <Br>
